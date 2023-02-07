@@ -1,0 +1,5 @@
+export const STATUS_CODE = {
+    SUCCESS: 200,
+    INTERNAL_SERVER_ERROR: 500,
+    NETWORK_ERROR: 400
+}

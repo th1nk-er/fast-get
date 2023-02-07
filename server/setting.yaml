@@ -1,0 +1,11 @@
+get:
+  on: true
+  key: "1234"
+save:
+  on: true
+  key: "1234"
+edit:
+  on: true
+  key: "1234"
+message:
+  maxLength: 10240
