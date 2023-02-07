@@ -2,7 +2,7 @@
 FROM golang:1.20-alpine AS build-server
 WORKDIR /build
 COPY ./server/go.mod ./server/go.sum ./
-RUN go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct && go mod download && go mod verify
+RUN go mod download && go mod verify
 COPY ./server .
 RUN go build -o ./server
 

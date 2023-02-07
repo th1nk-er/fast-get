@@ -1,11 +1,10 @@
 package controller
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 	"github.com/th1nk-er/fast-get/server/core"
 	"github.com/th1nk-er/fast-get/server/pkg/utils"
+	"net/http"
 )
 
 type MsgController struct{}
@@ -21,13 +20,13 @@ func (m MsgController) GetMessage(c *gin.Context) {
 		return
 	}
 	code, msg, err := core.GetMessage(model)
-
 	if model.Raw {
 		if err != nil {
+
 			c.JSON(http.StatusOK, err.Error())
 			return
 		}
-		c.JSON(http.StatusOK, msg)
+		c.String(http.StatusOK, msg)
 		return
 	}
 	if err != nil {
