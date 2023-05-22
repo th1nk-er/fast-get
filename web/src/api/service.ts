@@ -3,7 +3,7 @@ import { Notify } from 'quasar'
 import i18n from '@/locales/index'
 import { STATUS_CODE } from './code';
 
-axios.defaults.baseURL = '/m'
+axios.defaults.baseURL = '/x'
 
 const service = axios.create({
     timeout: 10000,
