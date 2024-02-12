@@ -2,7 +2,7 @@
 FROM golang:1.20-alpine AS build-server
 WORKDIR /build
 COPY ./server/go.mod ./server/go.sum ./
-RUN go mod download && go mod verify
+RUN go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct && go mod download && go mod verify
 COPY ./server .
 RUN go build -o ./server
 
@@ -12,12 +12,11 @@ COPY ./web .
 RUN echo "node" `node -v` && echo "yarn" `yarn -v` && yarn && yarn build
 
 ## Deploy
-FROM nginx
+FROM ubuntu 
 WORKDIR /app
 COPY --from=build-server /build/server .
-COPY --from=builder-web /build/dist .
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder-web /build/dist ./static
 COPY ./server/setting.yaml docker-entrypoint.sh ./
-RUN mkdir data
 VOLUME ["/app/data"]
+EXPOSE 8080
 CMD [ "sh","./docker-entrypoint.sh" ]

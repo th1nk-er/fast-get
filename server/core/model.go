@@ -17,7 +17,6 @@ type SaveModel struct {
 type EditModel struct {
 	MsgID     string `json:"id"`
 	Msg       string `json:"m"`
-	MsgKey    string `json:"mk"`
 	EditKey   string `json:"ek"`
 	SystemKey string `json:"sk"`
 }
